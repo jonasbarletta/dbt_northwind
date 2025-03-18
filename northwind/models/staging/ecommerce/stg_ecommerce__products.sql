@@ -1,3 +1,8 @@
+WITH source AS (
+    SELECT *
+    FROM {{source('northwind', 'products')}}
+)
+
 SELECT
     product_id,
     product_name,
@@ -9,4 +14,4 @@ SELECT
     units_on_order,
     reorder_level,
     discontinued
-FROM {{ref('raw_ecommerce__products')}}
+FROM source

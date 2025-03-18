@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: stg_ecommerce__customers
+    columns: 
+      - name: customer_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: stg_ecommerce__orders
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+      - name: customer_id
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('stg_ecommerce__customers')
+              field: customer_id
+
+  - name: stg_ecommerce__products
+    columns:
+      - name: product_id
+        data_tests:
+          - not_null
+          - unique
+
+  - name: stg_ecommerce__order_details
+    columns:
+      - name: order_id
+        data_tests:
+          - not_null
+      - name: product_id
+        data_tests:
+          - not_null
+      - name: order_id
+        data_tests:   
+          - relationships:
+              to: ref('stg_ecommerce__orders')
+              field: order_id
+      - name: product_id
+        data_tests:
+        - relationships:
+            to: ref('stg_ecommerce__products')
+            field: product_id

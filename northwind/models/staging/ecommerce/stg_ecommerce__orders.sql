@@ -1,3 +1,8 @@
+WITH source AS (
+    SELECT *
+    FROM {{source('northwind', 'orders')}}
+)
+
 SELECT 
     order_id,
     customer_id,
@@ -13,4 +18,4 @@ SELECT
     ship_region,
     ship_postal_code,
     ship_country
-FROM {{ref('raw_ecommerce__orders')}}
+FROM source

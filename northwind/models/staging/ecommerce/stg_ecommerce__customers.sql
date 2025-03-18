@@ -1,3 +1,12 @@
+WITH source AS (
+
+    SELECT
+        * 
+    FROM 
+        {{source('northwind', 'customers')}}
+
+)
+
 SELECT
     customer_id,
     company_name,
@@ -10,4 +19,4 @@ SELECT
     country,    
     LOWER(REGEXP_REPLACE(phone, '[^0-9]', '', 'g')) AS phone,
     LOWER(REGEXP_REPLACE(fax, '[^0-9]', '', 'g')) AS fax
-FROM {{ref('raw_ecommerce__customers')}}
+FROM source

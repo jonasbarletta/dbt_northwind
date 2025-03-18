@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: northwind # Nome lógico da fonte, usado no source()
+    database:  # Opcional, se diferente do padrão
+    schema: public # Schema real no banco
+    tables:
+      - name: customers
+        description: Tabela de clientes
+      - name: orders
+        description: Tabela de pedidos
+      - name: order_details
+        description: Tabela de detalhamento de pedidos
+      - name: products
+        description: Tabela de produtos 
